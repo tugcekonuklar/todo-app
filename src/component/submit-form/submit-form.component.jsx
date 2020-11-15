@@ -3,27 +3,42 @@ import React from 'react';
 import './submit-form.style.css'
 
 export class SubmitForm extends React.Component {
-    state = { term: '' };
-  
-    handleSubmit = (e) => {
-      e.preventDefault();
-      if(this.state.term === '') return;
-      this.props.onFormSubmit(this.state.term);
-      this.setState({ term: '' });
-    }
-  
-    render() {
-      return(
-        <form onSubmit={this.handleSubmit}>
-          <input 
-            type='text'
-            className='input'
-            placeholder='Enter Item'
-            value={this.state.term}
-            onChange={(e) => this.setState({term: e.target.value})}
-          />
-          <button className='button'>Submit</button>
-        </form>
-      );
-    }
+  state = {
+      title: '',
+      content: ''
   };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    if (this.state.title === '') return;
+    this.props.onFormSubmit(this.state);
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <div className="content-wrapper">
+          <div>
+            <input
+              type='text'
+              className='input'
+              placeholder='Enter Title'
+              value={this.state.title}
+              onChange={(e) => this.setState({ title: e.target.value })}
+            />
+            <input
+              type='text'
+              className='input'
+              placeholder='Enter Item'
+              value={this.state.content}
+              onChange={(e) => this.setState({ content: e.target.value })}
+            />
+          </div>
+          <div>
+            <button className='button'>Add</button>
+          </div>
+        </div>
+      </form>
+    );
+  }
+};
