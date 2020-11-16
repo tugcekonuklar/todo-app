@@ -17,7 +17,7 @@ class App extends React.Component {
   handleSubmit = task => {
     fetch("https://frauenloop-todo-service.herokuapp.com/api/todos", {
       method: 'POST',
-      headers:{
+      headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(task)
@@ -29,7 +29,6 @@ class App extends React.Component {
   }
 
   handleDelete = (index) => {
-    debugger;
     const newArr = [...this.state.tasks];
     const id = newArr[index].id;
     fetch("https://frauenloop-todo-service.herokuapp.com/api/todos/" + id, {
@@ -42,22 +41,43 @@ class App extends React.Component {
       });
   }
 
+  handleComplate = (index) => {
+    debugger;
+    const newArr = [...this.state.tasks];
+    const task = newArr[index];
+    fetch("https://frauenloop-todo-service.herokuapp.com/api/todos/" + task.id, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(task)
+    })
+      .then(response => response.json())
+      .then(todo => {
+        newArr[index] = todo
+        this.setState({ tasks: newArr });
+      });
+  }
+
   componentDidMount() {
     fetch("https://frauenloop-todo-service.herokuapp.com/api/todos")
       .then(response => response.json())
-      .then(todos => {
-        console.log(todos);
-        this.setState({ tasks: todos })
-      });
+      .then(todos => this.setState({ tasks: todos }));
   }
 
   render() {
     const { tasks } = this.state;
     return (
       <AppWrapper>
-        <Header numTodos={tasks.length} />
-        <SubmitForm onFormSubmit={this.handleSubmit} />
-        <TodoList tasks={tasks} onDelete={this.handleDelete} />
+        <div className="page-group ">
+        <div className="main-container">
+          <SubmitForm onFormSubmit={this.handleSubmit} />
+        </div>
+        <div className="main-container">
+          <Header numTodos={tasks.length} />
+          <TodoList tasks={tasks} onDelete={this.handleDelete} onComplate={this.handleComplate} />
+        </div>
+        </div>
       </AppWrapper>);
   }
 }

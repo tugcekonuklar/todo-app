@@ -9,8 +9,8 @@ export const Todo = (props) => {
           <h2 className="subtitle">{props.content}</h2>
         </div>
         <div className="item-wrapper-button">
-          <button className="icon has-text-success fas fa-info-circle"></button>
-          <button className="delete is-pulled-right" onClick={() => { props.onDelete(props.id) }}></button>
+          <button className="icon has-text-success fas fa-check-square fa-lg" onClick={() => console.log(props.id)}></button>
+          <button className="delete is-pulled-right button-margin" onClick={() => { props.onDelete(props.id) }}></button>
         </div>
       </div>
     </div>

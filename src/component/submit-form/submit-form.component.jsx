@@ -21,7 +21,7 @@ export class SubmitForm extends React.Component {
           <div>
             <input
               type='text'
-              className='input'
+              className='input is-focused'
               placeholder='Enter Title'
               value={this.state.title}
               onChange={(e) => this.setState({ title: e.target.value })}
