@@ -7,5 +7,10 @@
   display: flex;
   flex-flow: column;
   justify-content: space-between;
-  align-items: flex-end;
+  /* align-items: flex-end; */
+  width: 100vh;
+}
+
+.button-layout{
+  float: right;
 }

@@ -1,4 +1,8 @@
-.header {
-  display: inline;
-  text-align: center;
+.img {
+  height: 10vh;
+}
+
+.header-content {
+  padding-bottom: 10px;
+  margin-top: -20px;
 }

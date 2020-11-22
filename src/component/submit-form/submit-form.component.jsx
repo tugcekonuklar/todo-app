@@ -4,8 +4,8 @@ import './submit-form.style.css'
 
 export class SubmitForm extends React.Component {
   state = {
-      title: '',
-      content: ''
+    title: '',
+    content: ''
   };
 
   handleSubmit = (e) => {
@@ -18,27 +18,29 @@ export class SubmitForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="content-wrapper">
-          <div>
-            <input
-              type='text'
-              className='input is-focused'
-              placeholder='Enter Title'
+          <div className="field">
+            <label className="label">Title</label>
+            <div className="control">
+              <input className="input" type="text" placeholder="Title"  
               value={this.state.title}
-              onChange={(e) => this.setState({ title: e.target.value })}
-            />
-            <input
-              type='text'
-              className='input'
-              placeholder='Enter Item'
-              value={this.state.content}
-              onChange={(e) => this.setState({ content: e.target.value })}
-            />
+              onChange={(e) => this.setState({ title: e.target.value })}/>
+            </div>
           </div>
-          <div>
-            <button className='button'>Add</button>
+          <div className="field">
+            <label className="label">Content</label>
+            <div className="control">
+              <input className="input" type="text" placeholder="Content"
+               value={this.state.content}
+               onChange={(e) => this.setState({ content: e.target.value })} />
+            </div>
           </div>
-        </div>
+          <div className="field">
+            <button className='button bd-notification is-danger button-layout'>Add</button>
+          </div>
+          </div>
       </form>
     );
   }
 };
+
+

@@ -36,3 +36,8 @@
 .button-margin{
     margin-left: 5px;
 }
+
+.done {
+    text-decoration: line-through;
+}
+

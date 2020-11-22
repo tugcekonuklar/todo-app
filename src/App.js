@@ -3,10 +3,9 @@ import './App.css';
 
 
 import { AppWrapper } from './component/app-wrapper/app-warpper.component'
-import { Header } from './component/header/header.component'
 import { SubmitForm } from './component/submit-form/submit-form.component'
 import { TodoList } from './component/todo-list/todo-list.component'
-
+import { Board } from './component/board/board.component'
 
 class App extends React.Component {
 
@@ -26,7 +25,7 @@ class App extends React.Component {
       .then(task => {
         this.setState({ tasks: [...this.state.tasks, task] });
       });
-  }
+  };
 
   handleDelete = (index) => {
     const newArr = [...this.state.tasks];
@@ -39,12 +38,13 @@ class App extends React.Component {
         newArr.splice(index, 1);
         this.setState({ tasks: newArr });
       });
-  }
+  };
 
-  handleComplate = (index) => {
+  handleComplate = index => {
     debugger;
     const newArr = [...this.state.tasks];
     const task = newArr[index];
+    task.status = "COMPLETED";
     fetch("https://frauenloop-todo-service.herokuapp.com/api/todos/" + task.id, {
       method: 'PUT',
       headers: {
@@ -57,7 +57,7 @@ class App extends React.Component {
         newArr[index] = todo
         this.setState({ tasks: newArr });
       });
-  }
+  };
 
   componentDidMount() {
     fetch("https://frauenloop-todo-service.herokuapp.com/api/todos")
@@ -69,14 +69,16 @@ class App extends React.Component {
     const { tasks } = this.state;
     return (
       <AppWrapper>
-        <div className="page-group ">
-        <div className="main-container">
-          <SubmitForm onFormSubmit={this.handleSubmit} />
+        <div className="column is-narrow is-4">
+          <div className="box">
+            <SubmitForm onFormSubmit={this.handleSubmit} />
+            <Board numTodos={tasks.length}></Board>
+          </div>
         </div>
-        <div className="main-container">
-          <Header numTodos={tasks.length} />
-          <TodoList tasks={tasks} onDelete={this.handleDelete} onComplate={this.handleComplate} />
-        </div>
+        <div className="column is-8">
+          <div className="box list-wrapper-container">
+            <TodoList tasks={tasks} onDelete={this.handleDelete} onComplate={this.handleComplate} />
+          </div>
         </div>
       </AppWrapper>);
   }
