@@ -40,11 +40,40 @@ class App extends React.Component {
       });
   };
 
-  handleComplate = index => {
+  handleComplete = index => {
     debugger;
     const newArr = [...this.state.tasks];
     const task = newArr[index];
     task.status = "COMPLETED";
+    fetch("https://frauenloop-todo-service.herokuapp.com/api/todos/" + task.id + "/complete", {
+      method: 'PATCH'
+    })
+      .then(response => response.json())
+      .then(todo => {
+        newArr[index] = todo
+        this.setState({ tasks: newArr });
+      });
+  };
+
+  handleActivate = index => {
+    const newArr = [...this.state.tasks];
+    const task = newArr[index];
+    task.status = "ACTIVATED";
+    fetch("https://frauenloop-todo-service.herokuapp.com/api/todos/" + task.id + "/activate", {
+      method: 'PATCH'
+    })
+      .then(response => response.json())
+      .then(todo => {
+        newArr[index] = todo
+        this.setState({ tasks: newArr });
+      });
+  };
+
+  handleUpdate = (index, title, content) => {
+    const newArr = [...this.state.tasks];
+    const task = newArr[index];
+    task.title = title;
+    task.content = content;
     fetch("https://frauenloop-todo-service.herokuapp.com/api/todos/" + task.id, {
       method: 'PUT',
       headers: {
@@ -57,7 +86,7 @@ class App extends React.Component {
         newArr[index] = todo
         this.setState({ tasks: newArr });
       });
-  };
+  }
 
   componentDidMount() {
     fetch("https://frauenloop-todo-service.herokuapp.com/api/todos")
@@ -71,13 +100,18 @@ class App extends React.Component {
       <AppWrapper>
         <div className="column is-narrow is-4">
           <div className="box">
-            <SubmitForm onFormSubmit={this.handleSubmit} />
             <Board numTodos={tasks.length}></Board>
+            <SubmitForm onFormSubmit={this.handleSubmit} />
           </div>
         </div>
         <div className="column is-8">
           <div className="box list-wrapper-container">
-            <TodoList tasks={tasks} onDelete={this.handleDelete} onComplate={this.handleComplate} />
+            <TodoList tasks={tasks}
+              onDelete={this.handleDelete}
+              onComplete={this.handleComplete}
+              onActivate={this.handleActivate}
+              onUpdate={this.handleUpdate}
+            />
           </div>
         </div>
       </AppWrapper>);
