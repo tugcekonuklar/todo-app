@@ -15,18 +15,18 @@ export const Todo = (props) => {
           <nav className="level is-mobile">
             <div className="level-left">
               {props.status === 'COMPLETED'
-                ? <button className="button is-info " onClick={() => { props.onActivate(props.id) }}>Activate</button>
+                ? <button className="button is-info is-small " onClick={() => { props.onActivate(props.id) }}>Activate</button>
                 :
                 <div className="field-grouped">
-                  <button className="button is-primary button-grouped" onClick={() => { props.onComplete(props.id) }}>Done</button>
-                  <button className="button is-danger button-grouped" onClick={() => { props.onUpdate(props.id, props.title, props.content) }}>Update</button>
+                  <button className="button is-primary  is-small button-grouped" onClick={() => { props.onComplete(props.id) }}>Done</button>
+                  <button className="button is-warning is-small button-grouped" onClick={() => { props.onUpdate(props.id, props.title, props.content) }}>Update</button>
                 </div>
               }
             </div>
           </nav>
         </div>
         <div className="media-right">
-          <button className="delete is-pulled-right button-margin" onClick={() => { props.onDelete(props.id) }}></button>
+          <button className="delete is-pulled-right is-small button-margin" onClick={() => { props.onDelete(props.id) }}></button>
         </div>
       </article>
     </div>

@@ -96,11 +96,13 @@ class App extends React.Component {
 
   render() {
     const { tasks } = this.state;
+    const completedTasks = tasks.filter(task => task.status === "COMPLETED");
+    const openTasks = tasks.filter(task => task.status !== "COMPLETED");
     return (
       <AppWrapper>
         <div className="column is-narrow is-4">
           <div className="box">
-            <Board numTodos={tasks.length}></Board>
+            <Board numTodos={openTasks.length} numCompleted={completedTasks.length}></Board>
             <SubmitForm onFormSubmit={this.handleSubmit} />
           </div>
         </div>

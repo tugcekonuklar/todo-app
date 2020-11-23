@@ -3,12 +3,20 @@ import './board.style.css'
 
 export const Board = (props) => {
   return (
-      <div className="level-item has-text-centered board-layout">
+    <nav class="level board-layout">
+      <div className="level-item has-text-centered ">
         <div>
-          <p className="heading">Todos</p>
+          <p className="heading">Open</p>
           <p className="title">{props.numTodos}</p>
         </div>
-    </div>
+      </div>
+      <div class="level-item has-text-centered">
+        <div>
+          <p className="heading">Completed</p>
+          <p className="title">{props.numCompleted}</p>
+        </div>
+      </div>
+    </nav>
 
   )
 }

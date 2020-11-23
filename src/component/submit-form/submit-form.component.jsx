@@ -34,7 +34,7 @@ export class SubmitForm extends React.Component {
             </div>
           </div>
           <div className="field">
-            <button className='button bd-notification is-danger button-layout'>Add</button>
+            <button className='button bd-notification is-danger is-medium button-layout'>Add</button>
           </div>
         </div>
       </form>
