@@ -4,10 +4,15 @@ import './todo-list.style.css';
 
 export const TodoList = (props) => {
     const todos = props.tasks.map((todo, index) => {
-        return <Todo content={todo} key={index} id={index} onDelete={props.onDelete} />
+        return <Todo content={todo.content} title={todo.title} key={index} id={index} 
+        onDelete={props.onDelete} 
+        onComplete={props.onComplete} 
+        onActivate={props.onActivate} 
+        onUpdate={props.onUpdate} 
+        status={todo.status} />
     })
     return (
-        <div className='list-wrapper'>
+        <div>
             {todos}
         </div>
     );

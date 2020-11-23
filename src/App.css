@@ -1,5 +1,6 @@
 .App {
   /* text-align: center; */
+  font-family: "Poppins", sans-serif;
 }
 
 .App-logo {
@@ -39,7 +40,7 @@
 
 
 
-
+/* 
 form {
   display: flex;
   padding: 10px;
@@ -65,4 +66,31 @@ form {
 .list-wrapper {
   max-height: 200px;
   overflow-y: auto;
+} */
+
+
+
+.page-group {
+    flex-flow: row;
+    display: flex;
+    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 45px;
+    grid-row-gap: 45px;
+    -webkit-animation: slideY .6s both;
+    animation: slideY .6s both;
+}
+
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  /* width: 390px; */
+  padding: 10px 16px;
+  background-color: var(--header-bg-color);
+  border-radius: 8px;
+  cursor: pointer;
+  -webkit-transition: .2s;
+  transition: .2s;
 }

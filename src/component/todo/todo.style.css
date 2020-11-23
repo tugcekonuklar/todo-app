@@ -12,3 +12,39 @@
     display: block;
     padding: .5em 1em;
 }
+
+.item-wrapper{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+}
+
+
+.item-wrapper-content{
+    display: flex;
+    flex-flow: column;
+}
+
+.item-wrapper-button{
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: 5px;
+}
+
+.button-margin{
+    margin-left: 5px;
+}
+
+.done {
+    text-decoration: line-through;
+}
+
+.p-content {
+    word-break: break-all
+}
+
+.button-grouped{
+    margin-right: 5px;
+}

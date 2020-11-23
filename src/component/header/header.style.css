@@ -1,4 +1,12 @@
-.header {
-  display: inline;
-  text-align: center;
+.img {
+  height: 7vh;
+}
+
+.img-title {
+  height: 15vh;
+  width: 15vh;
+}
+
+.header-content {
+  margin-top: -35px;
 }
